@@ -29,6 +29,7 @@ ui <-
       ),
       sidebarLayout(
         sidebarPanel(
+          width=3,
           # sliders for degrees of freedom
         sliderTextInput(
           'nu1FID',
@@ -69,6 +70,7 @@ ui <-
           htmlOutput('alphaDisplayFID')
         ),
         mainPanel(
+          width=9,
           # Fancy title label
           uiOutput('labFID'),
           # plot output
@@ -96,7 +98,8 @@ ui <-
         )
       ),
       sidebarLayout(
-        sidebarPanel(          
+        sidebarPanel(
+          width=3,
           # sliders for degrees of freedom
           fluidRow(
             column(
@@ -149,6 +152,7 @@ ui <-
           htmlOutput('alphaDisplayNormID')
         ),
         mainPanel(
+          width=9,
           # Fancy title label
           uiOutput('labNormID'),
           # plot output
@@ -176,7 +180,8 @@ ui <-
         )
       ),
       sidebarLayout(
-        sidebarPanel(          
+        sidebarPanel(
+          width=3,
           # controls for distribution info
           fluidRow(
             column(
@@ -232,6 +237,7 @@ ui <-
           htmlOutput('alphaDisplayTID')
         ),
         mainPanel(
+          width=9,
           # Fancy title label
           uiOutput('labTID'),
           # plot output
@@ -263,7 +269,8 @@ ui <-
         )
       ),
       sidebarLayout(
-        sidebarPanel(          
+        sidebarPanel(
+          width=3,
           # controls for distribution info
           fluidRow(
             column(
@@ -315,6 +322,7 @@ ui <-
           htmlOutput('alphaDisplayChiID')
         ),
         mainPanel(
+          width=9,
           # Fancy title label
           uiOutput('labChiID'),
           # plot output
@@ -348,6 +356,7 @@ ui <-
       sidebarLayout(
         sidebarPanel(          
           # controls for distribution info
+          width=3,
           fluidRow(
           #   column(
           #     6,
@@ -400,6 +409,7 @@ ui <-
           htmlOutput('alphaDisplayExpID')
         ),
         mainPanel(
+          width=9,
           # Fancy title label
           uiOutput('labExpID'),
           # plot output
@@ -427,8 +437,10 @@ ui <-
         )
       ),
       sidebarLayout(
-        sidebarPanel(          
+        sidebarPanel(
+          width=3,
           # controls for distribution info
+          
           fluidRow(
             column(
               6,
@@ -468,6 +480,7 @@ ui <-
           )
         ),
         mainPanel(
+          width=9,
           # Fancy title label
           uiOutput('labBinomID'),
           # plot output
@@ -482,7 +495,7 @@ server <- function(input, output){
   observeEvent(input$plotButtonFID,{
     output$plotFID <- renderPlotly(ggplotly(fDist(input$nu1FID, input$nu2FID), tooltip='text',
                                             height=800,
-                                            width=1200) %>%
+                                            width=800) %>%
                                     style(hoverlabel = label) %>%
                                     layout(font = font)
                                   )
@@ -499,13 +512,29 @@ server <- function(input, output){
     })
   })
   # Norm Dist
+  # observeEvent(input$plotButtonNormID,{
+  #   output$plotNormID <- renderPlotly(ggplotly(normDist(input$muNormID, input$sigmaNormID), tooltip='text',
+  #                                              height=800,
+  #                                              width=1200,
+  #                                              execOnResize = FALSE) %>%
+  #                                       style(hoverlabel = label) %>%
+  #                                       layout(font = font)
+  #   )
+  #   output$labNormID <- renderUI({
+  #     withMathJax(
+  #       helpText(paste0("\\(N(",
+  #                       input$muNormID,",",input$sigmaNormID,")\\)"))
+  #     )
+  #   })
+  # })
   observeEvent(input$plotButtonNormID,{
     output$plotNormID <- renderPlotly(ggplotly(normDist(input$muNormID, input$sigmaNormID), tooltip='text',
                                                height=800,
-                                               width=1200,
+                                               width=800,
                                                execOnResize = FALSE) %>%
                                         style(hoverlabel = label) %>%
-                                        layout(font = font)
+                                        layout(
+                                          font = font)
     )
     output$labNormID <- renderUI({
       withMathJax(
@@ -524,7 +553,7 @@ server <- function(input, output){
   observeEvent(input$plotButtonTID,{
     output$plotTID <- renderPlotly(ggplotly(tDist(input$muTID, input$nuTID, input$normBoxTID), tooltip='text',
                                             height=800,
-                                            width=1200) %>%
+                                            width=800) %>%
                                         style(hoverlabel = label) %>%
                                         layout(font = font)
     )
@@ -544,7 +573,7 @@ server <- function(input, output){
   observeEvent(input$plotButtonChiID,{
     output$plotChiID <- renderPlotly(ggplotly(chiDist(input$nuChiID, input$ncpChiID), tooltip='text',
                                               height=800,
-                                              width=1200) %>%
+                                              width=800) %>%
                                      style(hoverlabel = label) %>%
                                      layout(font = font)
     )
@@ -564,7 +593,7 @@ server <- function(input, output){
   observeEvent(input$plotButtonExpID,{
     output$plotExpID <- renderPlotly(ggplotly(expDist(input$lambdaExpID), tooltip='text',
                                               height=800,
-                                              width=1200) %>%
+                                              width=800) %>%
                                        style(hoverlabel = label) %>%
                                        layout(font = font)
     )
@@ -584,7 +613,7 @@ server <- function(input, output){
   observeEvent(input$plotButtonBinomID,{
     output$plotBinomID <- renderPlotly(ggplotly(binomDist(input$nBinomID, input$pBinomID, input$normBoxBinomID), tooltip='text',
                                                 height=800,
-                                                width=1200) %>%
+                                                width=800) %>%
                                        style(hoverlabel = label) %>%
                                        layout(font = font)
     )
