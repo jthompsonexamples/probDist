@@ -1,7 +1,7 @@
 require(shiny)
 require(shinyWidgets)
 require(plotly)
-require(tidyverse)
+require(tidyverse, quietly = TRUE)
 
 #setwd("C:/Users/bexar_000/Desktop/Stats/shinyDeploy")
 source("shinyProbDistFunc.R")
