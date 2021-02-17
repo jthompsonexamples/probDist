@@ -481,8 +481,8 @@ server <- function(input, output){
   # F Dist
   observeEvent(input$plotButtonFID,{
     output$plotFID <- renderPlotly(ggplotly(fDist(input$nu1FID, input$nu2FID), tooltip='text',
-                                           height=400,
-                                           width=500) %>%
+                                            height=800,
+                                            width=1200) %>%
                                     style(hoverlabel = label) %>%
                                     layout(font = font)
                                   )
@@ -501,8 +501,9 @@ server <- function(input, output){
   # Norm Dist
   observeEvent(input$plotButtonNormID,{
     output$plotNormID <- renderPlotly(ggplotly(normDist(input$muNormID, input$sigmaNormID), tooltip='text',
-                                               height=400,
-                                               width=500) %>%
+                                               height=800,
+                                               width=1200,
+                                               execOnResize = FALSE) %>%
                                         style(hoverlabel = label) %>%
                                         layout(font = font)
     )
@@ -522,8 +523,8 @@ server <- function(input, output){
   # T Dist
   observeEvent(input$plotButtonTID,{
     output$plotTID <- renderPlotly(ggplotly(tDist(input$muTID, input$nuTID, input$normBoxTID), tooltip='text',
-                                               height=400,
-                                               width=500) %>%
+                                            height=800,
+                                            width=1200) %>%
                                         style(hoverlabel = label) %>%
                                         layout(font = font)
     )
@@ -542,8 +543,8 @@ server <- function(input, output){
   # Chi2 Dist
   observeEvent(input$plotButtonChiID,{
     output$plotChiID <- renderPlotly(ggplotly(chiDist(input$nuChiID, input$ncpChiID), tooltip='text',
-                                            height=400,
-                                            width=500) %>%
+                                              height=800,
+                                              width=1200) %>%
                                      style(hoverlabel = label) %>%
                                      layout(font = font)
     )
@@ -562,8 +563,8 @@ server <- function(input, output){
   # Exp Dist
   observeEvent(input$plotButtonExpID,{
     output$plotExpID <- renderPlotly(ggplotly(expDist(input$lambdaExpID), tooltip='text',
-                                              height=400,
-                                              width=500) %>%
+                                              height=800,
+                                              width=1200) %>%
                                        style(hoverlabel = label) %>%
                                        layout(font = font)
     )
@@ -582,8 +583,8 @@ server <- function(input, output){
   # Binom Dist
   observeEvent(input$plotButtonBinomID,{
     output$plotBinomID <- renderPlotly(ggplotly(binomDist(input$nBinomID, input$pBinomID, input$normBoxBinomID), tooltip='text',
-                                              height=400,
-                                              width=500) %>%
+                                                height=800,
+                                                width=1200) %>%
                                        style(hoverlabel = label) %>%
                                        layout(font = font)
     )
